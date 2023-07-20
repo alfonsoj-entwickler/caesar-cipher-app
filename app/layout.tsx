@@ -24,7 +24,7 @@ export default function RootLayout({
         <body className={`bg-special ${roboto.className}`}>
           <a
             className="absolute top-4 right-4 z-10"
-            href="https://github.com/alfonsoj-entwickler"
+            href="https://github.com/alfonsoj-entwickler/caesar-cipher-app"
             aria-label="github project caesar cipher"
             target="_blank"
             rel="noopener noreferrer"
