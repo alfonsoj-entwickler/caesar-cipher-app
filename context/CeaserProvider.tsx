@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, ChangeEvent } from "react";
+import { useState, createContext, ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 import { encription, decryption, MAX_ROTATION, MAX_TEXT } from "@/helpers";
 
@@ -12,14 +12,16 @@ export default function CeaserProvider({ children }: any) {
   const [plaintext, setPlaintext] = useState<string>("");
   const [ciphertext, setCiphertext] = useState<string>("");
 
+  useEffect( ()=> {
+    handleUpdateTextAreas()
+  }, [rotation])
+
   const handlePlusRotation = () => {
     setRotation(rotation + 1 > MAX_ROTATION ? rotation : rotation + 1);
-    handleUpdateTextAreas();
   };
 
   const handleMinusRotation = () => {
     setRotation(rotation - 1 < 0 ? rotation : rotation - 1);
-    handleUpdateTextAreas();
   };
 
   const handleUpdateTextAreas = () => {
