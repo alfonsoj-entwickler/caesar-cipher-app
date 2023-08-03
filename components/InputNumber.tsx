@@ -10,6 +10,7 @@ const InputNumber = () => {
     <div className="w-full h-full flex justify-center items-center gap-4">
       <button
         type="button"
+        title="increase module"
         className={`cursor-pointer ${ rotation === MAX_ROTATION ? "opacity-30": ""}`}
         onClick={() => handlePlusRotation()}
         disabled={rotation === MAX_ROTATION}
@@ -35,6 +36,7 @@ const InputNumber = () => {
       </p>
       <button
         type="button"
+        title="reduce module"
         className={`cursor-pointer ${ rotation === 0 ? "opacity-30": ""}`}
         onClick={() => handleMinusRotation()}
         disabled={rotation === 0}

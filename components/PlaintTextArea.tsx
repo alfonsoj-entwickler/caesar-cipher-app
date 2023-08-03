@@ -14,9 +14,10 @@ const PlaintTextArea = () => {
 
   return (
     <div className="flex flex-col w-full md:w-2/3 lg:w-2/5 h-full">
-      <div className="h-16 flex justify-end gap-4 px-4 bg-gray-300 rounded-t-lg">
+      <div className="h-16 flex justify-end gap-4 px-4 bg-gray-400/80 rounded-t-lg">
         <button
           type="button"
+          title="paste text"
           onClick={() => handlePastePlainText()}
           data-tooltip-id="tooltip-paste"
           data-tooltip-content="Paste"
@@ -39,6 +40,7 @@ const PlaintTextArea = () => {
         </button>
         <button
           type="button"
+          title="copy text"
           onClick={() => handleCopyCipherText()}
           data-tooltip-id="tooltip-copy"
           data-tooltip-content="Copy"
@@ -61,6 +63,7 @@ const PlaintTextArea = () => {
         </button>
         <button
           type="button"
+          title="delete text"
           onClick={() => handleDeleteTextArea()}
           data-tooltip-id="tooltip-remove"
           data-tooltip-content="Remove"
@@ -87,7 +90,7 @@ const PlaintTextArea = () => {
       </div>
       <textarea
         name="dencryption"
-        className="w-full h-full m-0 py-3 px-4 md:text-xl bg-black text-green-600 rounded-b-lg outline-none"
+        className="w-full h-full m-0 py-3 px-4 md:text-xl bg-black/80 text-green-600 rounded-b-lg outline-none"
         placeholder="Add your ciphertext"
         onChange={(e) => handleDecryption(e)}
         value={ciphertext}
