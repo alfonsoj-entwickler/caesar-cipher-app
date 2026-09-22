@@ -124,7 +124,7 @@ Ensure you have installed:
    ```bash
    cp .env.example .env.local
    ```
-   - `NEXT_PUBLIC_APP_URL`: Base URL of the deployment used for canonical URLs, Open Graph, Sitemap, and Robots.txt (defaults to `https://caesar-cipher-app.vercel.app` or dynamic `VERCEL_URL`).
+   - `APP_URL`: Base URL of the deployment used for canonical URLs, Open Graph, Sitemap, and Robots.txt (defaults to `https://caesar-cipher-app.vercel.app` or dynamic `VERCEL_URL`).
 
 4. **Start the development server:**
    ```bash
@@ -156,4 +156,4 @@ The application is deployed on [Vercel](https://vercel.com/). You can check the 
 
 ## 📄 License
 
-This project was developed for didactic and educational purposes. Feel free to use, modify, and distribute it.
+This project was developed for didactic and educational purposes. Feel free to use, modify, and distribute it.
