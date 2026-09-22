@@ -13,14 +13,24 @@ export const MAX_ROTATION = MODULO - 1;
 // export const MAX_ROTATION = 25;
 export const MAX_TEXT = 600;
 
+export function normalizeShift(rotation: number): number {
+  if (isNaN(rotation) || !isFinite(rotation)) return 0;
+  const intVal = Math.trunc(rotation);
+  return Math.max(0, Math.min(intVal, MAX_ROTATION));
+}
+
 export function encription(text: string, rotation: number): string {
+  const safeShift = normalizeShift(rotation);
   return text.charCodeAt(0) === ASCII_SPACE
     ? text
-    : String.fromCharCode((text.charCodeAt(0) + rotation) % MODULO);
+    : String.fromCharCode((text.charCodeAt(0) + safeShift) % MODULO);
 }
 
 export function decryption(text: string, rotation: number): string {
+  const safeShift = normalizeShift(rotation);
+  const diff = text.charCodeAt(0) - safeShift;
   return text.charCodeAt(0) === ASCII_SPACE
     ? text
-    : String.fromCharCode((text.charCodeAt(0) - rotation) % MODULO);
+    : String.fromCharCode(((diff % MODULO) + MODULO) % MODULO);
 }
+

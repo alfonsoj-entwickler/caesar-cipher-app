@@ -4,13 +4,68 @@ import { Roboto } from "next/font/google";
 import CeaserProvider from "@/context/CeaserProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SITE_URL } from "@/helpers/site";
 
-const roboto = Roboto({ weight: ['400', '700'],subsets: ["latin"] });
+const roboto = Roboto({ weight: ['400', '700'], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Caesar Cipher App",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Caesar Cipher App - Online Text Encryption & Decryption",
+    template: "%s | Caesar Cipher App",
+  },
   description:
-    "Caesar cipher is one of the simplest and most widely known encryption techniques",
+    "Free online Caesar cipher encoder and decoder. Encrypt and decrypt messages instantly using the classic Caesar rotation cipher with customizable shift offsets.",
+  keywords: [
+    "caesar cipher",
+    "caesar cipher decoder",
+    "encryption tool",
+    "rot13",
+    "cryptography",
+    "online text cipher",
+    "caesar shift cipher",
+  ],
+  authors: [{ name: "alfonsojentwickler", url: "https://github.com/alfonsoj-entwickler" }],
+  creator: "alfonsojentwickler",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Caesar Cipher App - Online Text Encryption & Decryption",
+    description:
+      "Free online Caesar cipher encoder and decoder. Encrypt and decrypt messages instantly with customizable shift offsets.",
+    url: SITE_URL,
+    siteName: "Caesar Cipher App",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Caesar Cipher App - Online Text Encryption & Decryption",
+    description:
+      "Free online Caesar cipher encoder and decoder. Encrypt and decrypt messages instantly with customizable shift offsets.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  themeColor: "#0f172a",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Caesar Cipher App",
+  url: SITE_URL,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "All",
+  description:
+    "Free online Caesar cipher encoder and decoder. Encrypt and decrypt messages instantly using the classic Caesar rotation cipher.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
 };
 
 export default function RootLayout({
@@ -20,12 +75,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <CeaserProvider>
-        <body className={`bg-special ${roboto.className}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`bg-special ${roboto.className}`}>
+        <CeaserProvider>
           <a
-            className="absolute top-4 right-4 z-10"
+            className="absolute top-4 right-4 z-10 p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             href="https://github.com/alfonsoj-entwickler/caesar-cipher-app"
-            aria-label="github project caesar cipher"
+            aria-label="GitHub repository of Caesar Cipher App"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -44,8 +105,8 @@ export default function RootLayout({
           </a>
           {children}
           <ToastContainer />
-        </body>
-      </CeaserProvider>
+        </CeaserProvider>
+      </body>
     </html>
   );
 }

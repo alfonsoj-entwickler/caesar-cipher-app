@@ -14,10 +14,12 @@ const PlaintTextArea = () => {
 
   return (
     <div className="flex flex-col w-full md:w-2/3 lg:w-2/5 h-full">
-      <div className="h-16 flex justify-end gap-4 px-4 bg-gray-400/80 rounded-t-lg">
+      <div className="h-16 flex justify-end items-center gap-4 px-4 bg-gray-400/80 rounded-t-lg">
         <button
           type="button"
           title="paste text"
+          aria-label="Paste text into ciphertext input"
+          className="p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 transition-opacity hover:opacity-80"
           onClick={() => handlePastePlainText()}
           data-tooltip-id="tooltip-paste"
           data-tooltip-content="Paste"
@@ -29,6 +31,7 @@ const PlaintTextArea = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
+            aria-hidden="true"
             className="w-8 h-8"
           >
             <path
@@ -41,6 +44,8 @@ const PlaintTextArea = () => {
         <button
           type="button"
           title="copy text"
+          aria-label="Copy ciphertext to clipboard"
+          className="p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 transition-opacity hover:opacity-80"
           onClick={() => handleCopyCipherText()}
           data-tooltip-id="tooltip-copy"
           data-tooltip-content="Copy"
@@ -52,6 +57,7 @@ const PlaintTextArea = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
+            aria-hidden="true"
             className="w-8 h-8"
           >
             <path
@@ -64,6 +70,8 @@ const PlaintTextArea = () => {
         <button
           type="button"
           title="delete text"
+          aria-label="Clear all encryption and decryption text"
+          className="p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 transition-opacity hover:opacity-80"
           onClick={() => handleDeleteTextArea()}
           data-tooltip-id="tooltip-remove"
           data-tooltip-content="Remove"
@@ -75,6 +83,7 @@ const PlaintTextArea = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
+            aria-hidden="true"
             className="w-8 h-8"
           >
             <path
@@ -88,14 +97,18 @@ const PlaintTextArea = () => {
         <Tooltip id="tooltip-copy" />
         <Tooltip id="tooltip-remove" />
       </div>
+      <label htmlFor="ciphertext-textarea" className="sr-only">
+        Ciphertext input for decryption
+      </label>
       <textarea
+        id="ciphertext-textarea"
         name="dencryption"
-        className="w-full h-full m-0 py-3 px-4 md:text-xl bg-black/80 text-green-600 rounded-b-lg outline-none"
+        className="w-full h-full m-0 py-3 px-4 md:text-xl bg-black/80 text-green-500 rounded-b-lg outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
         placeholder="Add your ciphertext"
         onChange={(e) => handleDecryption(e)}
         value={ciphertext}
         maxLength={MAX_TEXT}
-        aria-label="textarea to dencryption some text"
+        aria-label="Ciphertext input for decryption"
       />
     </div>
   );

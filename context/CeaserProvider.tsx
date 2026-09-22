@@ -65,42 +65,74 @@ export default function CeaserProvider({ children }: any) {
     setTextArea("");
   };
 
+  const [announcement, setAnnouncement] = useState<string>("");
+
   const handleCopyCipherText = () => {
-    navigator.clipboard.writeText(ciphertext);
-    toast.success("Ciphertext has been copied!");
+    if (!ciphertext) {
+      toast.info("No ciphertext to copy");
+      return;
+    }
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(ciphertext)
+        .then(() => {
+          toast.success("Ciphertext has been copied!");
+          setAnnouncement("Ciphertext successfully copied to clipboard");
+        })
+        .catch(() => {
+          toast.error("Failed to copy ciphertext");
+        });
+    }
   };
 
   const handlePasteCipherText = () => {
-    navigator.clipboard.readText().then(
-      (cliptext) => {
-        //console.log(cliptext)
-        if (cliptext.length !== 0 && cliptext.length < MAX_TEXT) {
-          handleEncryption(cliptext);
-        } else {
-          handleEncryption(cliptext.substring(0, MAX_TEXT));
-        }
-      },
-      (error) => console.log(error)
-    );
+    if (navigator?.clipboard?.readText) {
+      navigator.clipboard
+        .readText()
+        .then((cliptext) => {
+          if (!cliptext) return;
+          const cleanText = cliptext.slice(0, MAX_TEXT);
+          handleEncryption(cleanText);
+          setAnnouncement("Text pasted into plaintext input");
+        })
+        .catch(() => {
+          toast.error("Unable to read from clipboard. Please paste manually.");
+        });
+    }
   };
 
   const handleCopyPlainText = () => {
-    navigator.clipboard.writeText(plaintext);
-    toast.success("The plain text has been copied!");
+    if (!plaintext) {
+      toast.info("No plaintext to copy");
+      return;
+    }
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(plaintext)
+        .then(() => {
+          toast.success("The plain text has been copied!");
+          setAnnouncement("Plaintext successfully copied to clipboard");
+        })
+        .catch(() => {
+          toast.error("Failed to copy plaintext");
+        });
+    }
   };
 
   const handlePastePlainText = () => {
-    navigator.clipboard.readText().then(
-      (cliptext) => {
-        //console.log(cliptext)
-        if (cliptext.length !== 0 && cliptext.length < MAX_TEXT) {
-          handleDecryption(cliptext);
-        } else {
-          handleDecryption(cliptext.substring(0, MAX_TEXT));
-        }
-      },
-      (error) => console.log(error)
-    );
+    if (navigator?.clipboard?.readText) {
+      navigator.clipboard
+        .readText()
+        .then((cliptext) => {
+          if (!cliptext) return;
+          const cleanText = cliptext.slice(0, MAX_TEXT);
+          handleDecryption(cleanText);
+          setAnnouncement("Text pasted into ciphertext input");
+        })
+        .catch(() => {
+          toast.error("Unable to read from clipboard. Please paste manually.");
+        });
+    }
   };
 
   return (
@@ -120,6 +152,9 @@ export default function CeaserProvider({ children }: any) {
         handlePastePlainText,
       }}
     >
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {announcement}
+      </div>
       {children}
     </CeaserContext.Provider>
   );

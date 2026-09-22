@@ -10,12 +10,16 @@ export default function Home() {
         width={100}
         height={100}
         src="/caesar.svg"
-        alt="ceaser logo"
+        alt="Caesar Cipher bust illustration logo"
+        priority
         className="mb-4"
       />
-      <h1 className="text-4xl md:text-6xl lg:text-8xl mb-10 font-bold text-center text-[#CFB53B]">
+      <h1 className="text-4xl md:text-6xl lg:text-8xl mb-3 font-bold text-center text-[#CFB53B]">
         Caesar Cipher App
       </h1>
+      <p className="text-gray-300 text-center max-w-xl mb-8 text-sm md:text-base">
+        Encrypt and decrypt text messages in real-time using customizable Caesar shift rotation offsets.
+      </p>
       <div className="h-[65vh] lg:h-[55vh] w-full flex flex-col lg:flex-row items-center gap-4">
         <CipherTextArea />
         <div className="w-full md:w-2/3 lg:w-1/5 my-4 lg:my-0">
