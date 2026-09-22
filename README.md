@@ -119,12 +119,19 @@ Ensure you have installed:
    npm install
    ```
 
-3. **Start the development server:**
+3. **Configure environment variables (optional):**
+   Copy the example environment file and set your custom base URL if desired:
+   ```bash
+   cp .env.example .env.local
+   ```
+   - `NEXT_PUBLIC_APP_URL`: Base URL of the deployment used for canonical URLs, Open Graph, Sitemap, and Robots.txt (defaults to `https://caesar-cipher-app.vercel.app` or dynamic `VERCEL_URL`).
+
+4. **Start the development server:**
    ```bash
    npm run dev
    ```
 
-4. **Open in browser:**
+5. **Open in browser:**
    Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
 ---
