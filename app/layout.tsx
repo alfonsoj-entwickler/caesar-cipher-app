@@ -38,18 +38,28 @@ export const metadata: Metadata = {
     siteName: "Caesar Cipher App",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og_Image.jpg",
+        width: 1376,
+        height: 768,
+        alt: "Caesar Cipher App - Online Text Encryption & Decryption",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Caesar Cipher App - Online Text Encryption & Decryption",
     description:
       "Free online Caesar cipher encoder and decoder. Encrypt and decrypt messages instantly with customizable shift offsets.",
+    images: ["/og_Image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
   },
   themeColor: "#0f172a",
+  manifest: "/manifest.webmanifest",
 };
 
 const jsonLd = {
@@ -76,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
