@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Script from "next/script";
 import CeaserProvider from "@/context/CeaserProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -117,6 +118,18 @@ export default function RootLayout({
           {children}
           <ToastContainer />
         </CeaserProvider>
+        {/* Cloudflare Web Analytics */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({
+            token:
+              process.env.CF_BEACON_TOKEN ||
+              "df088cd65da8adnlaksdaslkdba",
+          })}
+          strategy="afterInteractive"
+        />
+        {/* End Cloudflare Web Analytics */}
       </body>
     </html>
   );
