@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import Script from "next/script";
 import CeaserProvider from "@/context/CeaserProvider";
@@ -59,8 +59,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  themeColor: "#0f172a",
   manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
 };
 
 const jsonLd = {

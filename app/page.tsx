@@ -2,6 +2,7 @@ import Image from "next/image";
 import InputNumber from "@/components/InputNumber";
 import CipherTextArea from "@/components/CipherTextArea";
 import PlaintTextArea from "@/components/PlaintTextArea";
+import ComponentErrorBoundary from "@/components/ComponentErrorBoundary";
 
 export default function Home() {
   return (
@@ -21,11 +22,17 @@ export default function Home() {
         Encrypt and decrypt text messages in real-time using customizable Caesar shift rotation offsets.
       </p>
       <div className="h-[65vh] lg:h-[55vh] w-full flex flex-col lg:flex-row items-center gap-4">
-        <CipherTextArea />
+        <ComponentErrorBoundary name="cipher text area">
+          <CipherTextArea />
+        </ComponentErrorBoundary>
         <div className="w-full md:w-2/3 lg:w-1/5 my-4 lg:my-0">
-          <InputNumber />
+          <ComponentErrorBoundary name="rotation input">
+            <InputNumber />
+          </ComponentErrorBoundary>
         </div>
-        <PlaintTextArea />
+        <ComponentErrorBoundary name="plain text area">
+          <PlaintTextArea />
+        </ComponentErrorBoundary>
       </div>
     </main>
   );
